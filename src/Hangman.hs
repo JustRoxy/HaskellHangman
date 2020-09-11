@@ -4,7 +4,7 @@ type MakedWord = String
 type Answers = String
 type Health = Int
 
-data Game = Win | Quess | AlreadySaid | Lost | Nope deriving (Eq, Show)
+data Game = Won | Quess | AlreadySaid | Lost | Nope deriving (Eq, Show)
 data Quiz = Quiz MakedWord Answers Health deriving (Eq, Show)
 
 
@@ -15,7 +15,7 @@ newGame word = Quiz word [] 5
 checkAnswer :: Quiz -> (Quiz, Game)
 checkAnswer q@(Quiz word ans _) = (q, res)
     where res 
-            | all (`elem` ans) word = Win 
+            | all (`elem` ans) word = Won 
             | otherwise = Quess
 
 

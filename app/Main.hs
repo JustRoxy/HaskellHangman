@@ -9,7 +9,7 @@ playGame q@(Quiz w ans hp) = do
     putStrLn ("Your hp is " ++ show hp ++ " and your answers are " ++ show ans ++ ", the word is " ++ showBlured q)
     next <- getLine
     case addAnswer (head next) q of
-        (_, Win) -> do
+        (_, Won) -> do
             putStrLn ("You won! The word was " ++ w)
             exitSuccess
         (g, Quess) -> do
@@ -25,7 +25,7 @@ playGame q@(Quiz w ans hp) = do
             exitFailure
 
         (g, Nope) -> do
-            putStrLn "Wrong guest"
+            putStrLn "Wrong guess"
             playGame g
 
 main :: IO ()
