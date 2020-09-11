@@ -9,22 +9,22 @@ playGame q@(Quiz w ans hp) = do
     putStrLn ("Your hp is " ++ show hp ++ " and your answers are " ++ show ans ++ ", the word is " ++ showBlured q)
     next <- getLine
     case addAnswer (head next) q of
-        (_, Won) -> do
+        (Pair _ Won) -> do
             putStrLn ("You won! The word was " ++ w)
             exitSuccess
-        (g, Quess) -> do
+        (Pair g Quess) -> do
             putStrLn "Right!"
             playGame g
 
-        (g, AlreadySaid) -> do
+        (Pair g AlreadySaid) -> do
             putStrLn ("Not unique answer (" ++ [head next] ++ "): ")
             playGame g
 
-        (_, Lost) -> do
+        (Pair _ Lost) -> do
             putStrLn ("You lost, the word was \"" ++ w ++ "\"")
             exitFailure
 
-        (g, Nope) -> do
+        (Pair g Nope) -> do
             putStrLn "Wrong guess"
             playGame g
 
